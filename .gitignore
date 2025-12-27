@@ -1,0 +1,58 @@
+# Basic .gitignore
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Logs and runtime data
+*.log
+logs/
+*.tmp
+*.temp
+*.swp
+*.swo
+
+# Environment files
+.env
+.env.*
+
+# Dependency directories
+node_modules/
+vendor/
+
+# Build output
+build/
+dist/
+out/
+target/
+
+# Coverage and reports
+coverage/
+.coverage
+*.lcov
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+.eggs/
+.venv/
+venv/
+
+# Java / JVM
+*.class
+*.jar
+*.war
+*.ear
+
+# JetBrains / VS Code IDE files
+.idea/
+*.iml
+.vscode/
+
+# Other editors
+*.kate-swp
+*~
