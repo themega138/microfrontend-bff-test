@@ -1,0 +1,13 @@
+{
+  "name": "microfrontend-bff-monorepo",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "start:bff": "npm --workspace apps/bff run start",
+    "start:microfrontend": "npm --workspace apps/microfrontend run start",
+    "start": "pm2-runtime docker/pm2.ecosystem.config.js",
+    "lint": "echo 'no lint configured'"
+  }
+}

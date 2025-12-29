@@ -1,0 +1,16 @@
+FROM node:20-alpine
+
+WORKDIR /app
+
+COPY package.json /app/package.json
+COPY apps/microfrontend/package.json /app/apps/microfrontend/package.json
+
+RUN npm install -g pm2 \
+  && npm install --workspace apps/microfrontend
+
+COPY apps/microfrontend /app/apps/microfrontend
+COPY docker /app/docker
+
+EXPOSE 4200 4201 4202
+
+CMD ["pm2-runtime", "/app/docker/pm2.ecosystem.config.js", "--only", "microfrontend"]

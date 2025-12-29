@@ -1,0 +1,29 @@
+{
+  "name": "reports",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/reports/src",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:webpack-browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/reports",
+        "index": "apps/reports/src/index.html",
+        "main": "apps/reports/src/main.ts",
+        "tsConfig": "apps/reports/tsconfig.app.json",
+        "assets": ["apps/reports/src/assets"],
+        "styles": ["apps/reports/src/styles.css"],
+        "webpackConfig": "apps/reports/webpack.config.js"
+      }
+    },
+    "serve": {
+      "executor": "@nx/angular:module-federation-dev-server",
+      "options": {
+        "buildTarget": "reports:build",
+        "port": 4202,
+        "publicHost": "http://localhost:4202"
+      }
+    }
+  }
+}

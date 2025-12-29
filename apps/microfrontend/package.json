@@ -1,0 +1,37 @@
+{
+  "name": "microfrontend",
+  "private": true,
+  "scripts": {
+    "start": "nx serve shell",
+    "serve:shell": "nx serve shell",
+    "serve:dashboard": "nx serve dashboard",
+    "serve:reports": "nx serve reports",
+    "build": "nx build shell"
+  },
+  "dependencies": {
+    "@angular/animations": "^16.2.0",
+    "@angular/common": "^16.2.0",
+    "@angular/compiler": "^16.2.0",
+    "@angular/core": "^16.2.0",
+    "@angular/forms": "^16.2.0",
+    "@angular/platform-browser": "^16.2.0",
+    "@angular/platform-browser-dynamic": "^16.2.0",
+    "@angular/router": "^16.2.0",
+    "@ngrx/effects": "^16.3.0",
+    "@ngrx/store": "^16.3.0",
+    "@ngrx/store-devtools": "^16.3.0",
+    "rxjs": "^7.8.0",
+    "tslib": "^2.6.0",
+    "zone.js": "^0.13.0"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^16.2.0",
+    "@angular/compiler-cli": "^16.2.0",
+    "@nx/angular": "^16.8.0",
+    "@nx/web": "^16.8.0",
+    "@nx/webpack": "^16.8.0",
+    "@types/node": "^18.17.0",
+    "nx": "^16.8.0",
+    "typescript": "^5.1.6"
+  }
+}

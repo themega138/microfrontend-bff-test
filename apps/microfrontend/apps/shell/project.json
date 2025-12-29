@@ -1,0 +1,29 @@
+{
+  "name": "shell",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/shell/src",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:webpack-browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/shell",
+        "index": "apps/shell/src/index.html",
+        "main": "apps/shell/src/main.ts",
+        "tsConfig": "apps/shell/tsconfig.app.json",
+        "assets": ["apps/shell/src/assets"],
+        "styles": ["apps/shell/src/styles.css"],
+        "webpackConfig": "apps/shell/webpack.config.js"
+      }
+    },
+    "serve": {
+      "executor": "@nx/angular:module-federation-dev-server",
+      "options": {
+        "buildTarget": "shell:build",
+        "port": 4200,
+        "publicHost": "http://localhost:4200"
+      }
+    }
+  }
+}
