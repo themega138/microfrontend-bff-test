@@ -11,12 +11,30 @@ module.exports = {
       },
     },
     {
-      name: 'microfrontend',
+      name: 'microfrontend-shell',
       cwd: '/app/apps/microfrontend',
       script: 'npm',
-      args: 'run start',
+      args: 'run serve:shell',
       env: {
         PORT: 4200,
+      },
+    },
+    {
+      name: 'microfrontend-dashboard',
+      cwd: '/app/apps/microfrontend',
+      script: 'npm',
+      args: 'run serve:dashboard',
+      env: {
+        PORT: 4201,
+      },
+    },
+    {
+      name: 'microfrontend-reports',
+      cwd: '/app/apps/microfrontend',
+      script: 'npm',
+      args: 'run serve:reports',
+      env: {
+        PORT: 4202,
       },
     },
   ],

@@ -1,16 +1,9 @@
 {
-  "compilerOptions": {
-    "target": "ES2022",
-    "useDefineForClassFields": false,
-    "module": "ES2020",
-    "moduleResolution": "node",
-    "strict": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "types": []
-  },
-  "angularCompilerOptions": {
-    "strictTemplates": true
-  },
-  "include": ["src/**/*.ts"]
+  "extends": "./tsconfig.base.json",
+  "files": [],
+  "references": [
+    { "path": "./apps/shell/tsconfig.app.json" },
+    { "path": "./apps/dashboard/tsconfig.app.json" },
+    { "path": "./apps/reports/tsconfig.app.json" }
+  ]
 }

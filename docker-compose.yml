@@ -26,6 +26,8 @@ services:
       dockerfile: docker/Dockerfile.microfrontend
     ports:
       - '4200:4200'
+      - '4201:4201'
+      - '4202:4202'
     depends_on:
       - bff
 

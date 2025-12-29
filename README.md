@@ -3,7 +3,7 @@
 Este repositorio contiene una estructura de monorepo con:
 
 - **BFF en NestJS** que expone endpoints dummy y persiste datos en MongoDB.
-- **Microfrontend en Angular** con dos módulos (Dashboard y Reports) que consumen el BFF usando **NgRx**.
+- **Microfrontends en Angular con Nx + Module Federation**: un shell y dos remotos (Dashboard y Reports) que consumen el BFF usando **NgRx**.
 - **Docker + PM2** para levantar los servicios de forma consistente.
 
 ## Requisitos previos
@@ -24,6 +24,12 @@ Este repositorio contiene una estructura de monorepo con:
 ├── apps
 │   ├── bff
 │   └── microfrontend
+│       ├── apps
+│       │   ├── shell
+│       │   ├── dashboard
+│       │   └── reports
+│       ├── nx.json
+│       └── tsconfig.base.json
 ├── docker
 │   ├── Dockerfile.bff
 │   ├── Dockerfile.microfrontend
@@ -43,7 +49,9 @@ Este repositorio contiene una estructura de monorepo con:
 
 2. Servicios disponibles:
    - **BFF**: http://localhost:3000/api
-   - **Microfrontend**: http://localhost:4200
+   - **Shell**: http://localhost:4200
+   - **Dashboard remoto**: http://localhost:4201
+   - **Reports remoto**: http://localhost:4202
    - **MongoDB**: mongodb://localhost:27017/bff
 
 ### Local (sin Docker)
@@ -66,9 +74,11 @@ Este repositorio contiene una estructura de monorepo con:
    MONGO_URL=mongodb://localhost:27017/bff npm --workspace apps/bff run start
    ```
 
-4. Ejecutar el microfrontend:
+4. Ejecutar el microfrontend con Nx (shell + remotos):
    ```bash
-   npm --workspace apps/microfrontend run start
+   npm --workspace apps/microfrontend run serve:dashboard
+   npm --workspace apps/microfrontend run serve:reports
+   npm --workspace apps/microfrontend run serve:shell
    ```
 
 ## Uso del BFF
@@ -100,22 +110,22 @@ Este repositorio contiene una estructura de monorepo con:
   }
   ```
 
-## Uso del microfrontend
+## Uso del microfrontend (Nx + Module Federation)
 
-El microfrontend consume el BFF con NgRx:
-- `ApiService` llama a `/api/dummy` y `/api/items`.
-- `ApiEffects` gestiona llamadas y actualiza el store.
-- `AppComponent` renderiza el estado.
+El shell carga dos remotos usando **Module Federation**:
+- **Dashboard (remote)** consume `GET /api/dummy` con NgRx.
+- **Reports (remote)** consume `GET /api/items` con NgRx.
 
-Módulos incluidos:
-- `DashboardModule`
-- `ReportsModule`
+Puertos usados:
+- Shell: `http://localhost:4200`
+- Dashboard: `http://localhost:4201`
+- Reports: `http://localhost:4202`
 
 ## PM2
 
 Los contenedores usan **PM2** para administrar procesos:
 - Configuración: `docker/pm2.ecosystem.config.js`
-- Servicios: `bff` y `microfrontend`
+- Servicios: `bff`, `microfrontend-shell`, `microfrontend-dashboard`, `microfrontend-reports`
 
 ## Comandos útiles
 

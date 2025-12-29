@@ -11,6 +11,6 @@ RUN npm install -g pm2 \
 COPY apps/microfrontend /app/apps/microfrontend
 COPY docker /app/docker
 
-EXPOSE 4200
+EXPOSE 4200 4201 4202
 
 CMD ["pm2-runtime", "/app/docker/pm2.ecosystem.config.js", "--only", "microfrontend"]

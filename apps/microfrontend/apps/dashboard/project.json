@@ -1,0 +1,29 @@
+{
+  "name": "dashboard",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/dashboard/src",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:webpack-browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/dashboard",
+        "index": "apps/dashboard/src/index.html",
+        "main": "apps/dashboard/src/main.ts",
+        "tsConfig": "apps/dashboard/tsconfig.app.json",
+        "assets": ["apps/dashboard/src/assets"],
+        "styles": ["apps/dashboard/src/styles.css"],
+        "webpackConfig": "apps/dashboard/webpack.config.js"
+      }
+    },
+    "serve": {
+      "executor": "@nx/angular:module-federation-dev-server",
+      "options": {
+        "buildTarget": "dashboard:build",
+        "port": 4201,
+        "publicHost": "http://localhost:4201"
+      }
+    }
+  }
+}
